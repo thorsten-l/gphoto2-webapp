@@ -38,6 +38,9 @@
         <button class="btn-sidebar nav-link" id="v-pills-version-tab" data-bs-toggle="pill"
           data-bs-target="#v-pills-version" type="button" role="tab" aria-controls="v-pills-version"
           aria-selected="false" onclick="gp2Version()">version</button>
+        <button class="btn-sidebar nav-link" id="v-pills-shutdown-tab" data-bs-toggle="pill"
+          data-bs-target="#v-pills-shutdown" type="button" role="tab" aria-controls="v-pills-shutdown"
+          aria-selected="false">shutdown</button>
       </div>
 
     </div>
@@ -191,6 +194,24 @@
           </table>
         </div>
 
+        <div class="tab-pane fade" id="v-pills-shutdown" role="tabpanel" aria-labelledby="v-pills-shutdown-tab">
+          <h1>shutdown</h1>
+          At this time the best way to reinitialize the <tt>gphoto2-webapi</tt> 
+          server is to send it a <tt>shutdown</tt> request and run it in an endless script loop.
+
+          <p style="margin-top: 1em;">
+            <button class="btn btn-primary" onclick="gp2Shutdown()">server shutdown</button>
+          </p>
+
+          <div style="margin-top: 2em;">Sample script</div>
+<pre style="background-color: #d0d0d0; padding: .5em;">#!/bin/bash
+
+while ( true )
+do
+  gphoto2-webapi --keep --server 
+done</pre>
+        </div>
+
       </div>
     </div>
 
@@ -277,6 +298,22 @@
         if (data.return_code == 0) {
           var toast = new bootstrap.Toast(toastLiveExample);
           toastMessage.innerHTML = "Trigger capture succeed!";
+          toast.show();
+        }
+        else {
+          var toast = new bootstrap.Toast(toastLiveExample);
+          toastMessage.innerHTML = "return_code = " + data.return_code;
+          toast.show();
+        }
+      });
+    }
+
+    function gp2Shutdown() {
+      console.log("gp2Shutdown");
+      fetch(gphoto2_webapi_url + "/api/server/shutdown").then((resp) => resp.json()).then(function (data) {
+        if (data.return_code == 0) {
+          var toast = new bootstrap.Toast(toastLiveExample);
+          toastMessage.innerHTML = "Server shutdown succeed!";
           toast.show();
         }
         else {
