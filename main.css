@@ -1,0 +1,48 @@
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+main {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.nav-flush .nav-link {
+  border-radius: 0;
+}
+
+.scrollarea {
+  overflow-y: auto;
+}
+
+.sidebar-divider {
+  flex-shrink: 0;
+  width: .1rem;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.btn-sidebar {
+  text-align: left;
+  color: white;
+}
+
+.btn-sidebar:hover,
+.btn-sidebar:focus {
+  color: white;
+  background-color: #484848;
+}
+
+.container {
+  margin-top: .5em;
+}
