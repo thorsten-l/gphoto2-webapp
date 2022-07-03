@@ -60,21 +60,21 @@
   &lt;/script>
 </pre>
 
-        <h3>gphoto2 project</h3>
-        <ul>
-          <li><a target="_blank" href="http://www.gphoto.org/">www.gphoto.org</a></li>
-          <li><a target="_blank" href="https://github.com/gphoto/gphoto2">gphoto2 - github</a></li>
-        </ul>
+          <h3>gphoto2 project</h3>
+          <ul>
+            <li><a target="_blank" href="http://www.gphoto.org/">www.gphoto.org</a></li>
+            <li><a target="_blank" href="https://github.com/gphoto/gphoto2">gphoto2 - github</a></li>
+          </ul>
 
-        <h3>my gphoto2 repositories</h3>
-        <ul>
-          <li><a target="_blank" href="https://github.com/thorsten-l/gphoto2">gphoto2-webapi-server</a></li>
-          <li><a target="_blank" href="https://github.com/thorsten-l/gphoto2-web-app">gphoto2-web-app</a></li>
-        </ul>
+          <h3>my gphoto2 repositories</h3>
+          <ul>
+            <li><a target="_blank" href="https://github.com/thorsten-l/gphoto2">gphoto2-webapi-server</a></li>
+            <li><a target="_blank" href="https://github.com/thorsten-l/gphoto2-web-app">gphoto2-web-app</a></li>
+          </ul>
 
-        <hr/>
+          <hr />
 
-        July 2022, Thorsten Ludewig (t.ludewig@gmail.com)
+          July 2022, Thorsten Ludewig (t.ludewig@gmail.com)
 
         </div>
         <div class="tab-pane fade" id="v-pills-autodetect" role="tabpanel" aria-labelledby="v-pills-autodetect-tab">
@@ -130,17 +130,19 @@
             <button class="btn btn-primary" onclick="gp2TriggerCapture()">trigger capture</button>
 
             <button id="gp2CaptureImageButton" class="btn btn-primary" onclick="gp2CaptureImage()">
-              <span id="gp2CaptureImageLoading" style="display: none" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span id="gp2CaptureImageLoading" style="display: none" class="spinner-border spinner-border-sm"
+                role="status" aria-hidden="true"></span>
               capture image
             </button>
 
             <button id="gp2CaptureImageDownloadButton" class="btn btn-primary" onclick="gp2CaptureImageDownload()">
-              <span id="gp2CaptureImageDownloadLoading" style="display: none" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span id="gp2CaptureImageDownloadLoading" style="display: none" class="spinner-border spinner-border-sm"
+                role="status" aria-hidden="true"></span>
               capture image and download
             </button>
           </p>
 
-          <hr/>
+          <hr />
 
           <p>
             <button disabled id="gp2FileExifButton" class="btn btn-primary" onclick="gp2FileExif()">
@@ -149,18 +151,22 @@
             <span id="exifJpegPath">:</span>
           </p>
 
-          <table id="gp2ExifTable" class="table table-striped table-responsive">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">key</th>
-                <th scope="col">value</th>
-              </tr>
-            </thead>
-            <tbody id="gp2ExifTableBody">
-              <tr><td>key</td><td>value</td></tr>
-            </tbody>
-          </table>
-          
+          <div style="height: 30em" class="overflow-auto">
+            <table id="gp2ExifTable" class="table table-striped table-responsive">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">key</th>
+                  <th scope="col">value</th>
+                </tr>
+              </thead>
+              <tbody id="gp2ExifTableBody">
+                <tr>
+                  <td>key</td>
+                  <td>value</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
 
@@ -211,18 +217,16 @@
     var toastLiveExample = document.getElementById('liveToast')
     var toastMessage = document.getElementById('toastMessage')
 
-    function setGlobalJpegPath( images )
-    {
+    function setGlobalJpegPath(images) {
       var exifJpegPath = document.getElementById('exifJpegPath')
       var gp2FileExifButton = document.getElementById('gp2FileExifButton')
 
-      images.forEach( element => {
+      images.forEach(element => {
         let path = element.info.path.toUpperCase();
-        if( path.endsWith(".JPG"))
-        {
-         lastJpegImagePath = element.info.path;
-         exifJpegPath.innerHTML = " : " + lastJpegImagePath;
-         gp2FileExifButton.disabled = false;
+        if (path.endsWith(".JPG")) {
+          lastJpegImagePath = element.info.path;
+          exifJpegPath.innerHTML = " : " + lastJpegImagePath;
+          gp2FileExifButton.disabled = false;
         }
       })
     }
@@ -294,7 +298,7 @@
         button.disabled = false;
         loading.style = "display: none";
         if (data.return_code == 0) {
-          setGlobalJpegPath( data.images );
+          setGlobalJpegPath(data.images);
           var toast = new bootstrap.Toast(toastLiveExample);
           toastMessage.innerHTML = "capture image succeed!";
           toast.show();
@@ -318,7 +322,7 @@
         button.disabled = false;
         loading.style = "display: none";
         if (data.return_code == 0) {
-          setGlobalJpegPath( data.images );
+          setGlobalJpegPath(data.images);
           var toast = new bootstrap.Toast(toastLiveExample);
           toastMessage.innerHTML = "capture image and download succeed!";
           toast.show();
@@ -338,8 +342,8 @@
       while (rowCount--) table.deleteRow(rowCount);
 
       fetch(gphoto2_webapi_url + "/api/file/exif" + lastJpegImagePath).then((resp) => resp.json()).then(function (data) {
-        Object.entries(data).forEach( 
-          ( [k, v] ) => {
+        Object.entries(data).forEach(
+          ([k, v]) => {
             var row = table.insertRow();
             row.insertCell(0).innerHTML = k;
             row.insertCell(1).innerHTML = v;
