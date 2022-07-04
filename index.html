@@ -49,6 +49,9 @@
 
     <div class="container">
 
+<!--
+  Homepage
+-->
       <div class="tab-content" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 
@@ -63,7 +66,7 @@
   &lt;/script>
 </pre>
 
-          <h3>gphoto2 project</h3>
+          <h3>gphoto project</h3>
           <ul>
             <li><a target="_blank" href="http://www.gphoto.org/">www.gphoto.org</a></li>
             <li><a target="_blank" href="https://github.com/gphoto/gphoto2">gphoto2 - github</a></li>
@@ -80,10 +83,14 @@
           July 2022, Thorsten Ludewig (t.ludewig@gmail.com)
 
         </div>
+
+<!--
+  auto detect camera
+-->
         <div class="tab-pane fade" id="v-pills-autodetect" role="tabpanel" aria-labelledby="v-pills-autodetect-tab">
           <h1>auto detect camera</h1>
 
-          <h2>API</h2>
+          <h3>API</h3>
           <p>
             <a class="btn btn-primary" data-bs-toggle="collapse" href="#apiAutoDetectReq" role="button" aria-expanded="false" aria-controls="apiAutoDetectReq">
               Request
@@ -128,8 +135,9 @@
           </table>
         </div>
 
-
-
+<!--
+  capture
+-->
         <div class="tab-pane fade" id="v-pills-capture" role="tabpanel" aria-labelledby="v-pills-capture-tab">
           <h1>capture</h1>
 
@@ -171,8 +179,9 @@
           </div>
         </div>
 
-
-
+<!--
+  version
+-->
         <div class="tab-pane fade" id="v-pills-version" role="tabpanel" aria-labelledby="v-pills-version-tab">
           <h1>version</h1>
           <table id="gp2VersionTable" class="table table-striped">
@@ -193,6 +202,9 @@
           </table>
         </div>
 
+<!--
+  shutdown
+-->
         <div class="tab-pane fade" id="v-pills-shutdown" role="tabpanel" aria-labelledby="v-pills-shutdown-tab">
           <h1>shutdown</h1>
           At this time the best way to reinitialize the <tt>gphoto2-webapi</tt> 
@@ -214,6 +226,9 @@ done</pre>
       </div>
     </div>
 
+<!--
+  Toast message
+-->
     <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
       <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header bg-dark text-white">
@@ -232,6 +247,9 @@ done</pre>
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
+<!--
+  Applictaion script
+-->
   <script>
     var toastTrigger = document.getElementById('liveToastBtn')
     var toastLiveExample = document.getElementById('liveToast')
