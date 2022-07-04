@@ -41,7 +41,7 @@
     <div class="sidebar-divider"></div>
     <div class="container">
 
-<!--
+      <!--
   Homepage
 -->
       <div class="tab-content" id="v-pills-tabContent">
@@ -50,12 +50,11 @@
           <h1>Home</h1>
 
           To enable the sample api calls change the <code>gphoto2_webapi_url</code> to your gphoto2-webapi server url at
-          the top of this file.
+          the top of the <tt>config.js</tt> file.
           <pre>
 
-  &lt;script>
-    var gphoto2_webapi_url = "http://192.168.4.130:8866";
-  &lt;/script>
+  var gphoto2_webapi_url = "http://192.168.4.130:8866";
+
 </pre>
 
           <h3>gphoto project</h3>
@@ -76,7 +75,7 @@
 
         </div>
 
-<!--
+        <!--
   auto detect camera
 -->
         <div class="tab-pane fade" id="v-pills-autodetect" role="tabpanel" aria-labelledby="v-pills-autodetect-tab">
@@ -84,10 +83,12 @@
 
           <h3>API</h3>
           <p>
-            <a class="btn btn-primary" data-bs-toggle="collapse" href="#apiAutoDetectReq" role="button" aria-expanded="false" aria-controls="apiAutoDetectReq">
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#apiAutoDetectReq" role="button"
+              aria-expanded="false" aria-controls="apiAutoDetectReq">
               Request
             </a>
-            <a class="btn btn-primary" data-bs-toggle="collapse" href="#apiAutoDetectRes" role="button" aria-expanded="false" aria-controls="apiAutoDetectRes">
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#apiAutoDetectRes" role="button"
+              aria-expanded="false" aria-controls="apiAutoDetectRes">
               Response
             </a>
           </p>
@@ -127,7 +128,7 @@
           </table>
         </div>
 
-<!--
+        <!--
   capture
 -->
         <div class="tab-pane fade" id="v-pills-capture" role="tabpanel" aria-labelledby="v-pills-capture-tab">
@@ -171,7 +172,7 @@
           </div>
         </div>
 
-<!--
+        <!--
   version
 -->
         <div class="tab-pane fade" id="v-pills-version" role="tabpanel" aria-labelledby="v-pills-version-tab">
@@ -194,12 +195,12 @@
           </table>
         </div>
 
-<!--
+        <!--
   shutdown
 -->
         <div class="tab-pane fade" id="v-pills-shutdown" role="tabpanel" aria-labelledby="v-pills-shutdown-tab">
           <h1>shutdown</h1>
-          At this time the best way to reinitialize the <tt>gphoto2-webapi</tt> 
+          At this time the best way to reinitialize the <tt>gphoto2-webapi</tt>
           server is to send it a <tt>shutdown</tt> request and run it in an endless script loop.
 
           <p style="margin-top: 1em;">
@@ -207,7 +208,7 @@
           </p>
 
           <div style="margin-top: 2em;">Sample script</div>
-<pre style="background-color: #d0d0d0; padding: .5em;">#!/bin/bash
+          <pre style="background-color: #d0d0d0; padding: .5em;">#!/bin/bash
 
 while ( true )
 do
@@ -218,7 +219,7 @@ done</pre>
       </div>
     </div>
 
-<!--
+    <!--
   Toast message
 -->
     <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
@@ -242,4 +243,5 @@ done</pre>
   <script src="app.js"></script>
 
 </body>
+
 </html>
