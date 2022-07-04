@@ -153,3 +153,8 @@ function gp2FileExif() {
     );
   });
 }
+
+function gp2ShowPreview() {
+  console.log("gp2ShowPreview");
+  document.getElementById("previewImage").src=gphoto2_webapi_url+"/api/show-preview";
+}

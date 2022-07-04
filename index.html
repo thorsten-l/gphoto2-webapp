@@ -28,6 +28,9 @@
         <button class="btn-sidebar nav-link" id="v-pills-capture-tab" data-bs-toggle="pill"
           data-bs-target="#v-pills-capture" type="button" role="tab" aria-controls="v-pills-capture"
           aria-selected="false">capture</button>
+        <button class="btn-sidebar nav-link" id="v-pills-preview-tab" data-bs-toggle="pill"
+          data-bs-target="#v-pills-preview" type="button" role="tab" aria-controls="v-pills-preview"
+          aria-selected="false" onclick="gp2ShowPreview()">preview</button>
         <button class="btn-sidebar nav-link" id="v-pills-version-tab" data-bs-toggle="pill"
           data-bs-target="#v-pills-version" type="button" role="tab" aria-controls="v-pills-version"
           aria-selected="false" onclick="gp2Version()">version</button>
@@ -170,6 +173,14 @@
               <tbody id="gp2ExifTableBody"></tbody>
             </table>
           </div>
+        </div>
+
+        <!--
+  preview
+-->
+        <div class="tab-pane fade" id="v-pills-preview" role="tabpanel" aria-labelledby="v-pills-preview-tab">
+          <h1>preview</h1>
+          <img id="previewImage" width="720" height="480" src="" />
         </div>
 
         <!--
