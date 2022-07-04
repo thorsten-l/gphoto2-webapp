@@ -3,3 +3,4 @@ private/
 *.bak
 *.old
 *~
+.DS_Store
