@@ -84,25 +84,35 @@
           <h1>auto detect camera</h1>
 
           <h2>API</h2>
-          <h3>Request</h3>
           <p>
-            HTTP GET <code>&lt;your gphoto2-webapi url&gt;/api/auto-detect</code>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#apiAutoDetectReq" role="button" aria-expanded="false" aria-controls="apiAutoDetectReq">
+              Request
+            </a>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#apiAutoDetectRes" role="button" aria-expanded="false" aria-controls="apiAutoDetectRes">
+              Response
+            </a>
           </p>
-          <h3>Result</h3>
-          <p>
-          <pre>{
+
+          <div class="collapse" id="apiAutoDetectReq">
+            <div class="card card-body">
+              HTTP GET <code>&lt;your gphoto2-webapi url&gt;/api/auto-detect</code>
+            </div>
+          </div>
+
+          <div class="collapse" id="apiAutoDetectRes">
+            <div class="card card-body">
+              <pre>{
   result: [
     {
       model: "Canon EOS 550D",
       port: "usb:003,019"
     }
-  ],
+  ], 
   return_code: 0
-}
-</pre>
-          </p>
-
-          <p>
+}</pre>
+            </div>
+          </div>
+          <p style="margin-top: 2em;">
             <button class="btn btn-primary" onclick="gp2AutoDetect()">auto detect</button>
           </p>
 
@@ -114,13 +124,7 @@
                 <th scope="col">Port</th>
               </tr>
             </thead>
-            <tbody id="gp2AutoDetectTableBody">
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
+            <tbody id="gp2AutoDetectTableBody"></tbody>
           </table>
         </div>
 
@@ -162,12 +166,7 @@
                   <th scope="col">value</th>
                 </tr>
               </thead>
-              <tbody id="gp2ExifTableBody">
-                <tr>
-                  <td>key</td>
-                  <td>value</td>
-                </tr>
-              </tbody>
+              <tbody id="gp2ExifTableBody"></tbody>
             </table>
           </div>
         </div>
@@ -253,16 +252,16 @@ done</pre>
     }
 
     function gp2AutoDetect() {
-      var table = document.getElementById('gp2AutoDetectTableBody');
-      var rowCount = table.rows.length;
-      while (rowCount--) table.deleteRow(rowCount);
+      const curTbody = document.getElementById("gp2AutoDetectTableBody")
+      const tbody = document.createElement('tbody');
+      curTbody.parentNode.replaceChild(tbody, curTbody)
 
       var counter = 1;
 
       fetch(gphoto2_webapi_url + "/api/auto-detect").then((resp) => resp.json()).then(function (data) {
         if (data.return_code == 0) {
           data.result.forEach(element => {
-            var row = table.insertRow();
+            var row = tbody.insertRow();
             row.insertCell(0).innerHTML = (counter++).toString();
             row.insertCell(1).innerHTML = element.model;
             row.insertCell(2).innerHTML = element.port;
@@ -278,13 +277,14 @@ done</pre>
 
     function gp2Version() {
       console.log("gp2Version");
-      var table = document.getElementById('gp2VersionTableBody');
-      var rowCount = table.rows.length;
-      while (rowCount--) table.deleteRow(rowCount);
+
+      const curTbody = document.getElementById("gp2VersionTableBody")
+      const tbody = document.createElement('tbody');
+      curTbody.parentNode.replaceChild(tbody, curTbody)
 
       fetch(gphoto2_webapi_url + "/api/version").then((resp) => resp.json()).then(function (data) {
         data.result.forEach(element => {
-          var row = table.insertRow();
+          var row = tbody.insertRow();
           row.insertCell(0).innerHTML = element.name;
           row.insertCell(1).innerHTML = element.version;
           row.insertCell(2).innerHTML = (element.libs === undefined) ? "-" : element.libs;
@@ -374,14 +374,14 @@ done</pre>
 
     function gp2FileExif() {
       console.log("gp2FileExif");
-      var table = document.getElementById('gp2ExifTableBody');
-      var rowCount = table.rows.length;
-      while (rowCount--) table.deleteRow(rowCount);
+      const curTbody = document.getElementById("gp2ExifTableBody")
+      const tbody = document.createElement('tbody');
+      curTbody.parentNode.replaceChild(tbody, curTbody)
 
       fetch(gphoto2_webapi_url + "/api/file/exif" + lastJpegImagePath).then((resp) => resp.json()).then(function (data) {
         Object.entries(data).forEach(
           ([k, v]) => {
-            var row = table.insertRow();
+            var row = tbody.insertRow();
             row.insertCell(0).innerHTML = k;
             row.insertCell(1).innerHTML = v;
           }
