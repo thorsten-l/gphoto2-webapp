@@ -1,4 +1,4 @@
-# gphoto2-web-app
+# gphoto2-webapp
 
 This is a sample WebApp to demonstrate the usage of the `gphoto-webapi` server only.
 
