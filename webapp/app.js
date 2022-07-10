@@ -158,3 +158,47 @@ function gp2ShowPreview() {
   console.log("gp2ShowPreview");
   document.getElementById("previewImage").src=gphoto2_webapi_url+"/api/show-preview";
 }
+
+
+function gp2InputSelectIso(option) {
+  console.log("gp2InputSelectIso -- " + option.value );
+
+  fetch(gphoto2_webapi_url + "/api/config/set-index/main/imgsettings/iso?i=" 
+             + option.value ).then((resp) => resp.json()).then(function (data) {
+      if (data.return_code == 0) {
+        var toast = new bootstrap.Toast(toastLiveExample);
+        toastMessage.innerHTML = "Set ISO-Speed succeed!";
+        toast.show();
+      }
+      else {
+        var toast = new bootstrap.Toast(toastLiveExample);
+        toastMessage.innerHTML = "return_code = " + data.return_code;
+        toast.show();
+      }
+  });
+}
+
+
+function gp2PrepareConfigPage() {
+  console.log("gp2PrepareConfigPage");
+
+  fetch(gphoto2_webapi_url + "/api/config/get/main/imgsettings/iso" ).then((resp) => resp.json()).then(function (data) {
+    document.getElementById("labelIso").innerHTML = data.label;
+    const inputSelectIso = document.getElementById("inputSelectIso");
+    inputSelectIso.innerHTML = "";
+
+    Object.entries(data.choice).forEach(
+      ( c ) => {
+        option = document.createElement("option");
+        option.text = c[1].value;
+        option.value = c[1].index;
+        if ( c[1].value === data.current )
+        {
+          option.selected = true;
+        }
+        inputSelectIso.add(option);
+      }
+    );
+
+  });
+}
