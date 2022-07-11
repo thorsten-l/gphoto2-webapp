@@ -12,15 +12,20 @@ function clearTbody(elementId) {
 }
 
 function setGlobalJpegPath(images) {
-  var exifJpegPath = document.getElementById('exifJpegPath')
-  var gp2FileExifButton = document.getElementById('gp2FileExifButton')
-
+  var captureFilePath = document.getElementById('captureFilePath')
+  var gp2FileGetButton = document.getElementById('gp2FileGetButton');
+  var gp2FileDownloadButton = document.getElementById('gp2FileDownloadButton');
+  
   images.forEach(element => {
     let path = element.info.path.toUpperCase();
     if (path.endsWith(".JPG")) {
       lastJpegImagePath = element.info.path;
-      exifJpegPath.innerHTML = " : " + lastJpegImagePath;
-      gp2FileExifButton.disabled = false;
+      captureFilePath.value = lastJpegImagePath;
+      document.getElementById('gp2FileExifButton').disabled = false;
+      gp2FileGetButton.classList.remove('disabled');
+      gp2FileGetButton.href = gphoto2_webapi_url + "/api/file/get" + lastJpegImagePath;
+      gp2FileDownloadButton.classList.remove('disabled');
+      gp2FileDownloadButton.href = gphoto2_webapi_url + "/api/file/download" + lastJpegImagePath;
     }
   })
 }
